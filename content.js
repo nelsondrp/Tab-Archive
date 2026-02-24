@@ -10,20 +10,18 @@ try {
 } catch (e) { console.warn("Erro nas configs", e); }
 
 function interceptClick(e) {
-    const isMiddleClick = e.button === 1; // Botão do meio
+    const isMiddleClick = e.button === 1; 
     const isCtrlClick = e.button === 0 && (e.ctrlKey || e.metaKey);
 
     if ((isMiddleClick && settings.middleClick) || (isCtrlClick && settings.ctrlClick)) {
         const link = e.target.closest('a');
         if (!link || !link.href || link.href.startsWith('javascript:') || link.href.startsWith('mailto:')) return;
 
-        // Para os scripts agressivos do site (como da Globo) de roubarem o clique
         e.stopPropagation();
         e.stopImmediatePropagation();
 
-        // Só fazemos o envio da aba no momento exato em que o clique é concluído
         if (e.type === 'auxclick' || e.type === 'click') {
-            e.preventDefault(); // Impede o navegador de abrir a aba
+            e.preventDefault();
 
             const ctxName = document.title || window.location.hostname || "Saved Links";
 
@@ -42,7 +40,6 @@ function interceptClick(e) {
     }
 }
 
-// Interceptamos as 3 fases do clique para garantir 100% de sucesso
 window.addEventListener('mousedown', interceptClick, true);
 window.addEventListener('click', interceptClick, true);
 window.addEventListener('auxclick', interceptClick, true);

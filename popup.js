@@ -89,7 +89,6 @@ document.addEventListener('DOMContentLoaded', async () => {
             const groupDiv = document.createElement('div');
             groupDiv.className = `context-group ${collapsedState[contextName] ? 'collapsed' : ''}`;
 
-            // Inicia desabilitado. Só vamos habilitar o arrastar quando clicar na alça.
             groupDiv.draggable = false;
 
             groupDiv.addEventListener('dragstart', (e) => {
@@ -99,7 +98,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             });
             groupDiv.addEventListener('dragend', async () => {
                 groupDiv.classList.remove('dragging');
-                groupDiv.draggable = false; // Desabilita novamente ao soltar
+                groupDiv.draggable = false;
                 draggedElement = null;
                 const newOrder = Array.from(contentDiv.children).map(el => el.querySelector('.context-title').textContent);
                 contextOrder = newOrder;
@@ -121,13 +120,11 @@ document.addEventListener('DOMContentLoaded', async () => {
             const headerLeft = document.createElement('div');
             headerLeft.className = 'header-left';
 
-            // NOVO: A alça de arrastar (hamburger menu)
             const dragHandle = document.createElement('span');
             dragHandle.className = 'drag-handle';
             dragHandle.textContent = '≡';
             dragHandle.title = "Drag to reorder";
 
-            // Ativa o arrastar apenas quando pressionar essa alça
             dragHandle.addEventListener('mousedown', () => { groupDiv.draggable = true; });
             dragHandle.addEventListener('mouseup', () => { groupDiv.draggable = false; });
             dragHandle.addEventListener('mouseleave', () => { if(!groupDiv.classList.contains('dragging')) groupDiv.draggable = false; });
