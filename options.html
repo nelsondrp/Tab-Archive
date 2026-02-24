@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <style>
+    :root {
+      --bg-color: #ffffff;
+      --text-color: #202124;
+      --header-color: #1a73e8;
+      --border-color: #dadce0;
+      --group-bg: #f8f9fa;
+      --input-bg: #ffffff;
+      --btn-bg: #1a73e8;
+      --btn-text: #ffffff;
+      --btn-hover: #1557b0;
+      --success-msg: #0f9d58;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg-color: #202124;
+        --text-color: #e8eaed;
+        --header-color: #8ab4f8;
+        --border-color: #5f6368;
+        --group-bg: #292a2d;
+        --input-bg: #303134;
+        --btn-bg: #8ab4f8;
+        --btn-text: #202124;
+        --btn-hover: #aecbfa;
+        --success-msg: #81c995;
+      }
+    }
+
+    :root[data-theme="light"] {
+      --bg-color: #ffffff; --text-color: #202124; --header-color: #1a73e8; --border-color: #dadce0;
+      --group-bg: #f8f9fa; --input-bg: #ffffff; --btn-bg: #1a73e8; --btn-text: #ffffff; --btn-hover: #1557b0;
+      --success-msg: #0f9d58;
+    }
+
+    :root[data-theme="dark"] {
+      --bg-color: #202124; --text-color: #e8eaed; --header-color: #8ab4f8; --border-color: #5f6368;
+      --group-bg: #292a2d; --input-bg: #303134; --btn-bg: #8ab4f8; --btn-text: #202124; --btn-hover: #aecbfa;
+      --success-msg: #81c995;
+    }
+
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; padding: 20px; max-width: 450px; background-color: var(--bg-color); color: var(--text-color); transition: background-color 0.3s, color 0.3s; }
+    h2 { color: var(--header-color); border-bottom: 1px solid var(--border-color); padding-bottom: 10px; }
+    .setting-group { margin-bottom: 25px; background: var(--group-bg); padding: 15px; border-radius: 8px; border: 1px solid var(--border-color); }
+    .setting-group h3 { margin-top: 0; font-size: 14px; margin-bottom: 12px; }
+    label { display: flex; align-items: center; margin-bottom: 10px; cursor: pointer; font-size: 14px; }
+    input[type="checkbox"] { margin-right: 10px; width: 16px; height: 16px; cursor: pointer; accent-color: var(--btn-bg); }
+    select { width: 100%; padding: 8px; border-radius: 4px; border: 1px solid var(--border-color); background-color: var(--input-bg); color: var(--text-color); font-size: 14px; outline: none; }
+    .btn { padding: 10px 20px; background: var(--btn-bg); color: var(--btn-text); border: none; border-radius: 4px; cursor: pointer; font-weight: bold; transition: background 0.2s; }
+    .btn:hover { background: var(--btn-hover); }
+    #saveMsg { color: var(--success-msg); display: none; margin-top: 15px; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <h2>Extension Settings</h2>
+
+  <div class="setting-group">
+    <h3>Capture Methods</h3>
+    <label>
+      <input type="checkbox" id="middleClick">
+      Middle Mouse Button (Scroll wheel click)
+    </label>
+    <label>
+      <input type="checkbox" id="ctrlClick">
+      Ctrl + Left Click
+    </label>
+    <label>
+      <input type="checkbox" id="contextMenu">
+      Right-click Menu ("Add Link to Context")
+    </label>
+  </div>
+
+  <div class="setting-group">
+    <h3>Theme Appearance</h3>
+    <select id="theme">
+      <option value="system">System Default</option>
+      <option value="light">Light</option>
+      <option value="dark">Dark</option>
+    </select>
+  </div>
+
+  <div class="setting-group">
+    <h3>Behavior</h3>
+    <label>
+      <input type="checkbox" id="autoRemove">
+      Remove link from context after opening it
+    </label>
+  </div>
+
+  <button id="saveBtn" class="btn">Save Settings</button>
+  <div id="saveMsg">Settings saved successfully!</div>
+
+  <script src="options.js"></script>
+</body>
+</html>
